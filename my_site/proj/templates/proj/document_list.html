@@ -1,0 +1,27 @@
+{% extends "base_generic.html" %}
+{% block nav_panel%}
+    {% if user.is_superuser%}
+        <li class="nav-item"><a href="{% url 'load' %}" class="nav-link">Загрузить проект</a></li>
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    <h2><div class="top-name center-block text-center">Мои проекты:</div></h2>
+    {% if object_list  %}
+        {% for post in object_list  %}
+            <div>
+                <a href="{{post.get_absolute_url}}">{{post.title}}</a><br>
+                {{post.description}}<br>
+                {{post.uploaded_at}}<br>
+            </div>
+        {% endfor %}
+
+    {% else %}
+        <h5><div class="top-name center-block text-center">Пока что нет проектов</div></h5>
+    {% endif %}
+
+
+
+
+{%endblock %}
+
